@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
-import { ChevronUp, ChevronDown, Play, Share, LogIn, LogOut, Image } from "lucide-react"
+import { ChevronUp, ChevronDown, Play, Share,LogOut} from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import axios from 'axios'
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 // Mock function to extract video ID from URL
@@ -22,6 +22,7 @@ interface Video {
   title: string;
   upvotes: number;
   haveUpVoted: boolean;
+  extractedId?: string | undefined;
 }
 
 export default function StreamView({
@@ -114,9 +115,9 @@ export default function StreamView({
     })
   }
 
-  const updateCurrentVideo = (activeVideo: Video | null) => {
-    setCurrentVideo(activeVideo);
-  }
+  // const updateCurrentVideo = (activeVideo: Video | null) => {
+  //   setCurrentVideo(activeVideo);
+  // }
 
   const playNext = async() => {
     if (currentVideo) {
@@ -190,8 +191,8 @@ export default function StreamView({
     // console.log("ACTIVE VIDEO: " , activeVideo)
 
     const transformedVideos: Video[] = allVideos
-    .filter((video: any) => !playedVideos.has(video.extractedId) && video.id !== activeVideo?.id)
-    .map((video: any) => ({
+    .filter((video: Video) => !playedVideos.has(video.extractedId ?? '') && video.id !== activeVideo?.id)
+    .map((video: Video) => ({
       streamId: video.id,
       id: video.extractedId,
       title: video.title,
@@ -199,6 +200,7 @@ export default function StreamView({
       haveUpVoted: video.haveUpVoted,
     }))
     .sort((a: Video, b: Video) => b.upvotes - a.upvotes);
+
 
   setQueue(transformedVideos);
   
@@ -240,7 +242,7 @@ export default function StreamView({
         const existingActiveVideo = await axios.get(`/api/streams/?creatorId=${creatorId}`); 
         const activeVideo = existingActiveVideo.data.activeStream?.stream;;
         if (!activeVideo) {
-          const { data } = await axios.get(`/api/streams/nextSong`);
+          await axios.get(`/api/streams/nextSong`);
           // console.log("FIRST USE EFFECT", data);
         }
       } catch (error) {
@@ -299,9 +301,9 @@ export default function StreamView({
     </Card>
   )
 
-  const handleSignInClick = () => {
-    signIn(undefined, { callbackUrl: window.location.href })
-  }
+  // const handleSignInClick = () => {
+  //   signIn(undefined, { callbackUrl: window.location.href })
+  // }
 
 
   const currentImageRender = (video: Video) => (

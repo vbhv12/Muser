@@ -1,7 +1,7 @@
 import Appbar from "./components/Appbar";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { PlayCircle, Users, Music, Plus, ThumbsUp, ThumbsDown, Headphones, Radio } from "lucide-react"
+import { PlayCircle, Plus, ThumbsUp, ThumbsDown} from "lucide-react"
 import Link from "next/link"
 import LandingFeaturePage from "@/app/components/LandingFeaturePage";
 import { redirect } from "next/navigation";
@@ -39,7 +39,7 @@ export default async function Home() {
                 </div>
                 <div className="bg-gray-800 rounded-xl p-8 shadow-2xl">
                   <div className="mb-6">
-                    <h3 className="text-2xl font-bold mb-2">Now Playing in "Friday Night Vibes"</h3>
+                    <h3 className="text-2xl font-bold mb-2">Now Playing in &quot;Friday Night Vibes&quot;</h3>
                     <p className="text-gray-400">DJ Awesome - Groovy Nights</p>
                   </div>
                   <div className="flex justify-between items-center mb-6">

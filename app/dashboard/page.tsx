@@ -2,20 +2,12 @@
 import StreamView from '@/app/components/StreamView'
 import { useEffect, useState } from 'react';
 
-// Mock function to extract video ID from URL
-const getVideoId = (url: string) => {
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-  const match = url.match(regExp);
-  return (match && match[2].length === 11) ? match[2] : null;
-}
-
-interface Video {
-  streamId: string;
-  id: string;
-  title: string;
-  upvotes: number;
-  haveUpVoted: boolean;
-}
+// // Mock function to extract video ID from URL
+// const getVideoId = (url: string) => {
+//   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+//   const match = url.match(regExp);
+//   return (match && match[2].length === 11) ? match[2] : null;
+// }
 
 export default function Component() {
   const [creatorId, setCreatorId] = useState<string | null>(null);

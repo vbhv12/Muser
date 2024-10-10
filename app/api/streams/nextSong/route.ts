@@ -21,7 +21,7 @@ export async function GET(){
     const mostUpVotedStream = await prisma.stream.findFirst({
         where: {
           userId: user.id,
-          active: true  // Add this condition
+          active: true
         },
         orderBy: {
           upVotes: {
@@ -30,13 +30,12 @@ export async function GET(){
         }
       });
 
-      // console.log("Most UpVoted Stream" , mostUpVotedStream);
 
       if(!mostUpVotedStream){
-        return null;
+        return NextResponse.json({ message: "No next song available" }, { status: 404 });
       }
 
-      const res = await prisma.currentStream.upsert({
+      await prisma.currentStream.upsert({
         where: {
           userId: user.id
         },
@@ -49,7 +48,7 @@ export async function GET(){
         }
       })
       // console.log("Upserted: " , res);
-      const stream_res = await prisma.stream.update({
+      await prisma.stream.update({
         where: {
             id: mostUpVotedStream?.id
         },
@@ -57,32 +56,7 @@ export async function GET(){
           active: false
         }
       })
-      // console.log("Deleted: " , stream_res);
-
-
-      // if (mostUpVotedStream?.id) {
-      //   await Promise.all([
-      //     await prisma.currentStream.upsert({
-      //       where: {
-      //         userId: user.id
-      //       },
-      //       update: {
-      //         streamId: mostUpVotedStream.id
-      //       },
-      //       create: {
-      //         userId: user.id,
-      //         streamId: mostUpVotedStream.id
-      //       }
-      //     }),
-      //     await prisma.stream.delete({
-      //       where: {
-      //           id: mostUpVotedStream?.id
-      //       }
-      //     })
-      //   ]);
-      // } else {
-      //   console.log("No upvoted stream found for the user");
-      // }
+      
 
     return NextResponse.json({
         stream: mostUpVotedStream

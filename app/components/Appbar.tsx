@@ -1,9 +1,6 @@
 "use client";
 import { signIn, signOut, useSession } from 'next-auth/react'
-import { useState } from 'react'
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { PlayCircle, Users, Music, Plus, ThumbsUp, ThumbsDown, Headphones, Radio } from "lucide-react"
 import Link from "next/link"
 
 const Appbar = () => {
