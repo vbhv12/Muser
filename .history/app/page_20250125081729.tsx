@@ -1,5 +1,4 @@
 import Appbar from "./components/Appbar";
-import StartJammingButton from "./components/StartJammingButton";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { PlayCircle, Plus, ThumbsUp, ThumbsDown} from "lucide-react"
@@ -8,7 +7,6 @@ import LandingFeaturePage from "@/app/components/LandingFeaturePage";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth-options";
-import { signIn, signOut } from "next-auth/react";
 
 
 export default async function Home() {
@@ -29,7 +27,9 @@ export default async function Home() {
               <p className="text-xl mb-12 max-w-2xl">
                 Create, vote, and listen together. The ultimate group music experience.
               </p>
-              <StartJammingButton/>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8 py-6">
+                Start Jamming Now
+              </Button>
             </section>
 
             <section className="py-20">
@@ -73,10 +73,28 @@ export default async function Home() {
                 </div>
               </div>
             </section>
+
+            {/* <section className="py-20">
+              <div className="bg-gray-900 rounded-xl p-8 text-center">
+                <h2 className="text-3xl font-bold mb-6">Ready to Get the Party Started?</h2>
+                <p className="text-xl mb-8">Join existing groups or create your own in seconds.</p>
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                  <Input placeholder="Enter group code" className="max-w-xs bg-gray-800 border-gray-700" />
+                  <Button className="bg-primary hover:bg-primary/90">
+                    Join Group
+                  </Button>
+                  <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+                    <Plus className="h-5 w-5 mr-2" />
+                    Create New Group
+                  </Button>
+                </div>
+              </div>
+            </section> */}
           </main>
 
           <footer className="bg-gray-900 py-8 mt-20">
             <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
+              {/* <p className="text-gray-400 mb-4 sm:mb-0">&copy; 2023 GroupPlay. All rights reserved.</p> */}
               <div className="flex space-x-6 text-gray-400">
                 <Link href="#" className="hover:text-white">About</Link>
                 <Link href="#" className="hover:text-white">Support</Link>

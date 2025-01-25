@@ -1,5 +1,4 @@
 import Appbar from "./components/Appbar";
-import StartJammingButton from "./components/StartJammingButton";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { PlayCircle, Plus, ThumbsUp, ThumbsDown} from "lucide-react"
@@ -8,7 +7,6 @@ import LandingFeaturePage from "@/app/components/LandingFeaturePage";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth-options";
-import { signIn, signOut } from "next-auth/react";
 
 
 export default async function Home() {
@@ -29,7 +27,9 @@ export default async function Home() {
               <p className="text-xl mb-12 max-w-2xl">
                 Create, vote, and listen together. The ultimate group music experience.
               </p>
-              <StartJammingButton/>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8 py-6">
+                Start Jamming Now
+              </Button>
             </section>
 
             <section className="py-20">
@@ -77,6 +77,7 @@ export default async function Home() {
 
           <footer className="bg-gray-900 py-8 mt-20">
             <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
+              {/* <p className="text-gray-400 mb-4 sm:mb-0">&copy; 2023 GroupPlay. All rights reserved.</p> */}
               <div className="flex space-x-6 text-gray-400">
                 <Link href="#" className="hover:text-white">About</Link>
                 <Link href="#" className="hover:text-white">Support</Link>

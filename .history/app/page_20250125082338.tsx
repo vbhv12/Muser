@@ -1,5 +1,5 @@
+"use client"
 import Appbar from "./components/Appbar";
-import StartJammingButton from "./components/StartJammingButton";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { PlayCircle, Plus, ThumbsUp, ThumbsDown} from "lucide-react"
@@ -29,7 +29,10 @@ export default async function Home() {
               <p className="text-xl mb-12 max-w-2xl">
                 Create, vote, and listen together. The ultimate group music experience.
               </p>
-              <StartJammingButton/>
+              <Start
+              {/* <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8 py-6" onClick={()=> signOut()}>
+                Start Jamming Now
+              </Button> */}
             </section>
 
             <section className="py-20">
