@@ -1,6 +1,7 @@
 import Appbar from "./components/Appbar";
 import StartJammingButton from "./components/StartJammingButton";
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { PlayCircle, Plus, ThumbsUp, ThumbsDown} from "lucide-react"
 import Link from "next/link"
 import LandingFeaturePage from "@/app/components/LandingFeaturePage";
